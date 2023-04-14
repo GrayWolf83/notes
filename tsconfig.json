@@ -14,8 +14,18 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "~processes/*": ["processes/*"],
+      "~pages/*": ["pages/*"],
+      "~widgets/*": ["widgets/*"],
+      "~features/*": ["features/*"],
+      "~entities/*": ["entities/*"],
+      "~shared/*": ["shared/*"],
+  }
+
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", "dist/serviceWorkers.js"],
+  "references": [{ "path": "./tsconfig.node.json" }],
 }
