@@ -7,17 +7,17 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 export default defineConfig({
 	plugins: [react(), tsconfigPaths()],
 	server: {
-		port: 3000,
+		port: 3001,
 		open: true,
 	},
 	resolve: {
 		alias: {
-			'~/processes/*': path.resolve(__dirname, './src/processes/*'),
-			'~/pages/*': path.resolve(__dirname, './src/pages/*'),
-			'~/widgets/*': path.resolve(__dirname, './src/widgets/*'),
-			'~/features/*': path.resolve(__dirname, './src/features/*'),
-			'~/entities/*': path.resolve(__dirname, './src/entities/*'),
-			'~/shared/*': path.resolve(__dirname, './src/shared/*'),
+			'~processes/*': path.resolve(__dirname, './src/processes/*'),
+			'~pages/*': path.resolve(__dirname, './src/pages/*'),
+			'~widgets/*': path.resolve(__dirname, './src/widgets/*'),
+			'~features/*': path.resolve(__dirname, './src/features/*'),
+			'~entities/*': path.resolve(__dirname, './src/entities/*'),
+			'~shared/*': path.resolve(__dirname, './src/shared/*'),
 		},
 	},
 })
