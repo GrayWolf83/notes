@@ -1,5 +1,19 @@
+import { useState } from 'react'
+import { SigninWidget } from '~widgets/signinWidget'
+import { SignupWidget } from '~widgets/signupWidget'
+
 const Login = () => {
-	return <h2>Login</h2>
+	const [isLogin, setIsLogin] = useState(true)
+
+	return (
+		<>
+			{isLogin ? (
+				<SigninWidget setIsLogin={setIsLogin} />
+			) : (
+				<SignupWidget setIsLogin={setIsLogin} />
+			)}
+		</>
+	)
 }
 
 export default Login

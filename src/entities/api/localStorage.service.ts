@@ -2,9 +2,11 @@ const TOKEN_KEY = 'jwt-token'
 const REFRESH_KEY = 'jwt-refresh-token'
 const EXPIRES_KEY = 'jwt-expires'
 const USERID_KEY = 'user-local-id'
+const USER_EMAIL = 'user-email'
 
 interface SetTokenProps {
 	refreshToken: string
+	email: string
 	idToken: string
 	localId: string
 	expiresIn?: number
@@ -13,6 +15,7 @@ interface SetTokenProps {
 export function setTokens({
 	refreshToken,
 	idToken,
+	email,
 	localId,
 	expiresIn = 3600,
 }: SetTokenProps) {
@@ -21,6 +24,7 @@ export function setTokens({
 	localStorage.setItem(TOKEN_KEY, idToken)
 	localStorage.setItem(REFRESH_KEY, refreshToken)
 	localStorage.setItem(EXPIRES_KEY, String(expiresDate))
+	localStorage.setItem(USER_EMAIL, email)
 }
 export function getAccessToken() {
 	return localStorage.getItem(TOKEN_KEY)
@@ -33,6 +37,7 @@ export function removeAuthData() {
 	localStorage.removeItem(TOKEN_KEY)
 	localStorage.removeItem(REFRESH_KEY)
 	localStorage.removeItem(EXPIRES_KEY)
+	localStorage.removeItem(USER_EMAIL)
 }
 
 export function getTokenExpiresDate() {
@@ -40,6 +45,9 @@ export function getTokenExpiresDate() {
 }
 export function getUserId() {
 	return localStorage.getItem(USERID_KEY)
+}
+export function getUserEmail() {
+	return localStorage.getItem(USER_EMAIL)
 }
 
 const localStorageService = {
@@ -49,5 +57,6 @@ const localStorageService = {
 	getTokenExpiresDate,
 	getUserId,
 	removeAuthData,
+	getUserEmail,
 }
 export default localStorageService
