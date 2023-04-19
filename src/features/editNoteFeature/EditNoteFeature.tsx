@@ -5,17 +5,11 @@ import { Button } from '~shared/ui'
 const EditNoteFeature = () => {
 	const { editNote } = useNotes()
 
-	const handleClick = () => {
-		if (editNote) {
-			editNote()
-		}
-	}
-
 	return (
 		<Button
 			variant='default'
 			radius='md'
-			onClick={handleClick}
+			onClick={editNote}
 			children={<EditIcon width={14} height={14} />}
 		/>
 	)

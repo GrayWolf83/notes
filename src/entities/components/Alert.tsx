@@ -1,24 +1,24 @@
 import { notifications } from '@mantine/notifications'
 import { useEffect } from 'react'
-import { useAuth } from '~entities/context'
+import { useAlert } from '~entities/context'
 
 const AppAlert = () => {
-	const { error, removeError } = useAuth()
+	const { alerts, clearAlerts } = useAlert()
 
 	useEffect(() => {
-		if (error) {
-			notifications.show({
-				title: 'Error',
-				color: 'red',
-				message: error?.message,
-				autoClose: 2000,
+		if (alerts.length) {
+			alerts.forEach((alert) => {
+				notifications.show({
+					title: alert.title,
+					color: alert.color,
+					message: alert.message,
+					autoClose: 2500,
+				})
 			})
 
-			if (removeError) {
-				removeError()
-			}
+			clearAlerts()
 		}
-	}, [error])
+	}, [alerts])
 
 	return <></>
 }

@@ -12,32 +12,21 @@ import { v4 as uuid } from 'uuid'
 import { notesService } from '~entities/api'
 import { useDisableEditNote } from '~entities/hooks'
 import { INote } from '~entities/models/note'
+import { useAlert } from './Alert'
 import { useAuth } from './Auth'
-
-interface Error {
-	code: string
-	message: string
-}
 
 interface NotesProps {
 	notes: any[]
 	loading: boolean
-	error: Error | null
 	isDisabled: boolean
-	current?: INote
-	setCurrent?: Dispatch<SetStateAction<INote>>
-	handleChangeCurrent?: Dispatch<SetStateAction<Event>>
-	saveNote?: () => void
-	editNote?: (val?: boolean) => void
-	removeNote?: () => void
-	removeError?: () => void
-}
-
-const notesDefaultValue: NotesProps = {
-	notes: [],
-	loading: false,
-	error: null,
-	isDisabled: true,
+	current: INote
+	setCurrent: Dispatch<SetStateAction<INote>>
+	handleChangeCurrent: (e: {
+		target: HTMLInputElement | HTMLTextAreaElement
+	}) => void
+	saveNote: () => void
+	editNote: (val?: boolean) => void
+	removeNote: () => void
 }
 
 const newNote = {
@@ -45,6 +34,18 @@ const newNote = {
 	title: 'Новая заметка',
 	content: '',
 	created: String(Date.now()),
+}
+
+const notesDefaultValue: NotesProps = {
+	notes: [],
+	current: newNote,
+	loading: false,
+	isDisabled: true,
+	setCurrent: () => {},
+	handleChangeCurrent: () => {},
+	saveNote: () => {},
+	editNote: () => {},
+	removeNote: () => {},
 }
 
 const Notes = createContext<NotesProps>(notesDefaultValue)
@@ -61,12 +62,14 @@ export function NotesProvider(props: NotesProviderProps) {
 	const [notes, setNotes] = useState<any[]>([newNote])
 	const [current, setCurrent] = useState<INote>(newNote)
 	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
 	const { isDisabled, editNote } = useDisableEditNote()
 	const { email } = useAuth()
 	const navigate = useNavigate()
+	const { setAlert } = useAlert()
 
-	const handleChangeCurrent = (e: any) => {
+	const handleChangeCurrent = (e: {
+		target: HTMLInputElement | HTMLTextAreaElement
+	}) => {
 		setCurrent((prev: any) => ({
 			...prev,
 			[e.target.name]: e.target.value,
@@ -79,7 +82,12 @@ export function NotesProvider(props: NotesProviderProps) {
 			const data = await notesService.getList()
 
 			setNotes([newNote, ...data])
-		} catch (error) {
+		} catch (error: any) {
+			setAlert({
+				title: error?.code,
+				message: error?.message,
+				color: 'red',
+			})
 		} finally {
 			setLoading(false)
 		}
@@ -97,6 +105,16 @@ export function NotesProvider(props: NotesProviderProps) {
 		}
 		try {
 			if (id) {
+				if (!current.title || !current.content) {
+					setAlert({
+						title: 'Изменение заметки',
+						message:
+							'Заполните поля заголовка и содержания заметки!',
+						color: 'red',
+					})
+					return
+				}
+
 				const data = await notesService.create(id, note)
 
 				setNotes((prev) => {
@@ -117,10 +135,19 @@ export function NotesProvider(props: NotesProviderProps) {
 				})
 				setCurrent({ ...newNote, created: String(Date.now()) })
 				editNote(true)
+				setAlert({
+					title: 'Сохранение заметки',
+					message: 'Заметка успешно сохранена!',
+					color: 'green',
+				})
 				navigate('/new')
 			}
 		} catch (error: any) {
-			setError(error)
+			setAlert({
+				title: error?.code,
+				message: error?.message,
+				color: 'red',
+			})
 		} finally {
 			setLoading(false)
 		}
@@ -135,16 +162,17 @@ export function NotesProvider(props: NotesProviderProps) {
 				await notesService.remove(id)
 				setNotes((prev) => prev.filter((item) => item.id !== id))
 				setCurrent({ ...newNote, created: String(Date.now()) })
+				setAlert({
+					title: 'Удаление заметки',
+					message: 'Заметка успешно удалена!',
+					color: 'green',
+				})
 				navigate('/new')
 			}
 		} catch (error) {
 		} finally {
 			setLoading(false)
 		}
-	}
-
-	function removeError() {
-		setError(null)
 	}
 
 	useEffect(() => {
@@ -160,7 +188,6 @@ export function NotesProvider(props: NotesProviderProps) {
 			value={{
 				notes,
 				loading,
-				error,
 				isDisabled,
 				current,
 				setCurrent,
@@ -168,7 +195,6 @@ export function NotesProvider(props: NotesProviderProps) {
 				editNote,
 				removeNote,
 				saveNote,
-				removeError,
 			}}>
 			{props.children}
 		</Notes.Provider>

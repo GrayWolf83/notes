@@ -9,10 +9,8 @@ const DeleteNoteFeature = () => {
 	const [opened, { open, close }] = useDisclosure(false)
 
 	const handleClick = () => {
-		if (removeNote) {
-			removeNote()
-			close()
-		}
+		removeNote()
+		close()
 	}
 
 	return (
@@ -20,7 +18,11 @@ const DeleteNoteFeature = () => {
 			<Modal
 				opened={opened}
 				onClose={close}
-				title={<Title order={5}>Удаление записи</Title>}>
+				title={
+					<Text fz='xl' fw='bold'>
+						Удаление записи
+					</Text>
+				}>
 				<Text>Подтвердите удаление записи</Text>
 				<Group mt={20} position='right'>
 					<Button onClick={close} color='gray'>

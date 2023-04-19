@@ -34,9 +34,7 @@ const SigninWidget = ({ setIsLogin }: SigninWidgetProps) => {
 	const navigate = useNavigate()
 
 	const handleLogin = (values: typeof initialValues) => {
-		if (signin) {
-			signin(values, () => navigate('/'))
-		}
+		signin(values, () => navigate('/'))
 	}
 
 	return (
