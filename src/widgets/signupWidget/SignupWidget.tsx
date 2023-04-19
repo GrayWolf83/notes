@@ -34,9 +34,7 @@ const SignupWidget = ({ setIsLogin }: SignupWidgetProps) => {
 	const navigate = useNavigate()
 
 	const handleRegister = (values: typeof initialValues) => {
-		if (signup) {
-			signup(values, () => navigate('/'))
-		}
+		signup(values, () => navigate('/'))
 	}
 
 	return (

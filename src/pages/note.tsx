@@ -17,18 +17,13 @@ const Note = () => {
 	useEffect(() => {
 		if (noteId) {
 			const currentNote = notes.find((note) => note.id === noteId)
-			if (editNote && setCurrent) {
+
+			if (currentNote) {
 				setCurrent(currentNote)
 				editNote(true)
 			}
 		}
 	}, [noteId])
-
-	const handleChange = (e: any) => {
-		if (handleChangeCurrent) {
-			handleChangeCurrent(e)
-		}
-	}
 
 	return (
 		<>
@@ -36,7 +31,7 @@ const Note = () => {
 				mb={20}
 				name='title'
 				value={current?.title || ''}
-				onChange={handleChange}
+				onChange={handleChangeCurrent}
 				size='lg'
 				disabled={isDisabled}
 			/>
@@ -46,7 +41,7 @@ const Note = () => {
 				size='lg'
 				minRows={15}
 				value={current?.content || ''}
-				onChange={handleChange}
+				onChange={handleChangeCurrent}
 				disabled={isDisabled}
 			/>
 		</>

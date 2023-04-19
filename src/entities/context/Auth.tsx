@@ -4,26 +4,22 @@ import { createContext } from 'react'
 import authService from '~entities/api/auth.service'
 import localStorageService from '~entities/api/localStorage.service'
 import { AuthPayload } from '~entities/models/auth'
-
-const authDefaultValue = {
-	email: '',
-	loading: false,
-	error: null,
-}
-
-interface Error {
-	code: string
-	message: string
-}
+import { useAlert } from './Alert'
 
 interface AuthProps {
 	email: string
 	loading: boolean
-	error: Error | null
-	signin?: (values: AuthPayload, callback: () => void) => void
-	signup?: (values: AuthPayload, callback: () => void) => void
-	signout?: () => void
-	removeError?: () => void
+	signin: (values: AuthPayload, callback: () => void) => void
+	signup: (values: AuthPayload, callback: () => void) => void
+	signout: () => void
+}
+
+const authDefaultValue = {
+	email: '',
+	loading: false,
+	signin: () => {},
+	signup: () => {},
+	signout: () => {},
 }
 
 const Auth = createContext<AuthProps>(authDefaultValue)
@@ -39,7 +35,7 @@ interface AuthProviderProps {
 export function AuthProvider(props: AuthProviderProps) {
 	const [email, setEmail] = useState(localStorageService.getUserEmail() || '')
 	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
+	const { setAlert } = useAlert()
 
 	async function signin(values: AuthPayload, callback: () => void) {
 		setLoading(true)
@@ -49,7 +45,11 @@ export function AuthProvider(props: AuthProviderProps) {
 			setEmail(data.email)
 			callback()
 		} catch (error: any) {
-			setError(error)
+			setAlert({
+				title: error?.code,
+				message: error?.message,
+				color: 'red',
+			})
 		} finally {
 			setLoading(false)
 		}
@@ -63,7 +63,11 @@ export function AuthProvider(props: AuthProviderProps) {
 			setEmail(data.email)
 			callback()
 		} catch (error: any) {
-			setError(error)
+			setAlert({
+				title: error?.code,
+				message: error?.message,
+				color: 'red',
+			})
 		} finally {
 			setLoading(false)
 		}
@@ -74,20 +78,14 @@ export function AuthProvider(props: AuthProviderProps) {
 		setEmail('')
 	}
 
-	function removeError() {
-		setError(null)
-	}
-
 	return (
 		<Auth.Provider
 			value={{
 				email,
 				loading,
-				error,
 				signin,
 				signup,
 				signout,
-				removeError,
 			}}>
 			{props.children}
 		</Auth.Provider>

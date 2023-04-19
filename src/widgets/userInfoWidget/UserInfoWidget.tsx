@@ -7,9 +7,7 @@ const UserInfoWidget = () => {
 	const { email, signout } = useAuth()
 
 	const handleSignout = () => {
-		if (signout) {
-			signout()
-		}
+		signout()
 	}
 
 	return (
