@@ -18,14 +18,18 @@ const notesService = {
 		const userId = localStorageService.getUserId()
 		const { data } = await httpService.get(endpoint + userId)
 
-		const dataArr = Object.keys(data)
-			.map((key) => ({
-				id: key,
-				...data[key],
-			}))
-			.sort((a, b) => (Number(a.created) > Number(b.created) ? -1 : 1))
+		if (data) {
+			return Object.keys(data)
+				.map((key) => ({
+					id: key,
+					...data[key],
+				}))
+				.sort((a, b) =>
+					Number(a.created) > Number(b.created) ? -1 : 1,
+				)
+		}
 
-		return dataArr
+		return data
 	},
 	remove: async (noteId: string) => {
 		const userId = localStorageService.getUserId()

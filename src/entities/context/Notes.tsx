@@ -81,7 +81,9 @@ export function NotesProvider(props: NotesProviderProps) {
 		try {
 			const data = await notesService.getList()
 
-			setNotes([newNote, ...data])
+			if (data) {
+				setNotes([newNote, ...data])
+			}
 		} catch (error: any) {
 			setAlert({
 				title: error?.code,
@@ -178,8 +180,6 @@ export function NotesProvider(props: NotesProviderProps) {
 	useEffect(() => {
 		if (email) {
 			getNotes()
-		} else {
-			setNotes([newNote])
 		}
 	}, [email])
 
