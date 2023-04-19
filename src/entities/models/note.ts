@@ -1,5 +1,5 @@
-export interface Note {
-	id: string
+export interface INote {
+	id?: string
 	title: string
 	content: string
 	created: string

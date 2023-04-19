@@ -6,7 +6,7 @@ const USER_EMAIL = 'user-email'
 
 interface SetTokenProps {
 	refreshToken: string
-	email: string
+	email?: string
 	idToken: string
 	localId: string
 	expiresIn?: number
@@ -15,7 +15,7 @@ interface SetTokenProps {
 export function setTokens({
 	refreshToken,
 	idToken,
-	email,
+	email = String(localStorage.getItem(USER_EMAIL)),
 	localId,
 	expiresIn = 3600,
 }: SetTokenProps) {

@@ -40,7 +40,7 @@ const SignupWidget = ({ setIsLogin }: SignupWidgetProps) => {
 	}
 
 	return (
-		<Box maw={300} mx='auto' mt={-100}>
+		<Box maw={300} mx='auto' pt={200}>
 			<Title order={3} align='center'>
 				Регистрация
 			</Title>

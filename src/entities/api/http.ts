@@ -3,7 +3,8 @@ import authService from './auth.service'
 import localStorageService from './localStorage.service'
 
 const http = axios.create({
-	baseURL: '',
+	baseURL:
+		'https://notes-320e6-default-rtdb.asia-southeast1.firebasedatabase.app/',
 })
 
 http.interceptors.request.use(
@@ -20,7 +21,11 @@ http.interceptors.request.use(
 		if (refreshToken && Number(expiresDate) < Date.now()) {
 			const data = await authService.refresh()
 
-			localStorageService.setTokens(data)
+			localStorageService.setTokens({
+				refreshToken: data.refresh_token,
+				idToken: data.id_token,
+				localId: data.user_id,
+			})
 		}
 		const accessToken = localStorageService.getAccessToken()
 		if (accessToken) {

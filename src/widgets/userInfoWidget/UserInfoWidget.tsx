@@ -13,10 +13,10 @@ const UserInfoWidget = () => {
 	}
 
 	return (
-		<Flex gap={10} align='center'>
-			{email && <Text>{email}</Text>}
+		<Flex gap={5} align='center'>
+			{email && <Text fz={14}>{email}</Text>}
 			<Button variant='default' radius='md' onClick={handleSignout}>
-				<SignoutIcon />
+				<SignoutIcon width={14} height={14} />
 			</Button>
 		</Flex>
 	)

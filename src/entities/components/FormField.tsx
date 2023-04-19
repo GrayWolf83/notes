@@ -9,6 +9,7 @@ interface FormFieldProps {
 	btnSubmitLabel: string
 	children: React.ReactNode
 	loading: boolean
+	isHideSubmitButton?: boolean
 }
 
 const FormField: React.FC<FormFieldProps> = ({
@@ -18,6 +19,7 @@ const FormField: React.FC<FormFieldProps> = ({
 	btnSubmitLabel,
 	loading,
 	children,
+	isHideSubmitButton = false,
 	...rest
 }) => {
 	const form = useForm({
@@ -37,15 +39,17 @@ const FormField: React.FC<FormFieldProps> = ({
 			})}
 
 			<Group position='center' mt='md'>
-				<Button
-					color='gray'
-					type='submit'
-					disabled={loading}
-					leftIcon={
-						loading ? <Loader color='dark' size={16} /> : null
-					}>
-					{btnSubmitLabel}
-				</Button>
+				{!isHideSubmitButton && (
+					<Button
+						color='gray'
+						type='submit'
+						disabled={loading}
+						leftIcon={
+							loading ? <Loader color='dark' size={16} /> : null
+						}>
+						{btnSubmitLabel}
+					</Button>
+				)}
 			</Group>
 		</form>
 	)
