@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom'
 import { App } from './app/App'
 import './index.css'
 
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/serviceWorkers.js')
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<BrowserRouter>
 		<App />
