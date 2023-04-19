@@ -5,7 +5,7 @@ import './App.css'
 
 export function App() {
 	return (
-		<MantineProvider withNormalizeCSS withGlobalStyles>
+		<MantineProvider withGlobalStyles withNormalizeCSS>
 			<Routing />
 			<Notifications />
 		</MantineProvider>

@@ -1,9 +1,14 @@
+import { useNotes } from '~entities/context'
 import { EditIcon } from '~shared/icons'
 import { Button } from '~shared/ui'
 
 const EditNoteFeature = () => {
+	const { editNote } = useNotes()
+
 	const handleClick = () => {
-		console.log('edit note feature')
+		if (editNote) {
+			editNote()
+		}
 	}
 
 	return (
@@ -11,7 +16,7 @@ const EditNoteFeature = () => {
 			variant='default'
 			radius='md'
 			onClick={handleClick}
-			children={<EditIcon />}
+			children={<EditIcon width={14} height={14} />}
 		/>
 	)
 }

@@ -1,9 +1,14 @@
+import { useNotes } from '~entities/context'
 import { SaveIcon } from '~shared/icons'
 import { Button } from '~shared/ui'
 
 const SaveNoteFeature = () => {
+	const { saveNote, isDisabled } = useNotes()
+
 	const handleClick = () => {
-		console.log('save note feature')
+		if (saveNote) {
+			saveNote()
+		}
 	}
 
 	return (
@@ -11,7 +16,8 @@ const SaveNoteFeature = () => {
 			variant='default'
 			radius='md'
 			onClick={handleClick}
-			children={<SaveIcon />}
+			children={<SaveIcon width={14} height={14} />}
+			disabled={isDisabled}
 		/>
 	)
 }
