@@ -1,6 +1,12 @@
 const staticCacheName = 'static-site-v1'
 const dynamicCacheName = 'dynamic-site-v1'
 
+const cacheExceptions = [
+	'identitytoolkit.googleapis.com/v1',
+	'firebasedatabase.app',
+	'chrome-extension',
+]
+
 const ASSETS = ['/', '/index.html']
 
 self.addEventListener('install', async (e) => {
@@ -21,15 +27,15 @@ self.addEventListener('activate', async (event) => {
 })
 
 self.addEventListener('fetch', async (event) => {
-	if (
-		event.request.url.includes('identitytoolkit.googleapis.com/v1') ||
-		event.request.url.includes(
-			'notes-320e6-default-rtdb.asia-southeast1.firebasedatabase.app',
-		)
-	) {
+	const hasException = cacheExceptions.some((item) =>
+		event.request.url.includes(item),
+	)
+
+	if (hasException) {
 		event.respondWith(fetch(event.request))
+	} else {
+		event.respondWith(cacheFirst(event.request))
 	}
-	event.respondWith(cacheFirst(event.request))
 })
 
 async function cacheFirst(request) {

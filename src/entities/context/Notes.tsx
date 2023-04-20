@@ -16,7 +16,7 @@ import { useAlert } from './Alert'
 import { useAuth } from './Auth'
 
 interface NotesProps {
-	notes: any[]
+	notes: INote[]
 	loading: boolean
 	isDisabled: boolean
 	current: INote
@@ -29,7 +29,7 @@ interface NotesProps {
 	removeNote: () => void
 }
 
-const newNote = {
+const newNote: INote = {
 	id: 'new',
 	title: 'Новая заметка',
 	content: '',

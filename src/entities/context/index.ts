@@ -1,3 +1,5 @@
 export { AuthProvider, useAuth } from './Auth'
 export { NotesProvider, useNotes } from './Notes'
 export { AlertProvider, useAlert } from './Alert'
+export { SearchProvider, useSearchContext } from './Search'
+export { RootContextProvider } from './RootContextProvider'

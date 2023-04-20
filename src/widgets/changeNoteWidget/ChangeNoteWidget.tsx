@@ -5,7 +5,7 @@ import { SaveNoteFeature } from '~features/saveNoteFeature'
 
 const ChangeNoteWidget = () => {
 	return (
-		<Flex align='center' gap={10}>
+		<Flex align='center' gap={5}>
 			<EditNoteFeature />
 			<SaveNoteFeature />
 			<DeleteNoteFeature />
