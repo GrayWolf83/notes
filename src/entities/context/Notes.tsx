@@ -1,17 +1,10 @@
-import {
-	ReactNode,
-	useEffect,
-	useState,
-	useContext,
-	Dispatch,
-	SetStateAction,
-} from 'react'
+import { ReactNode, useEffect, useState, useContext } from 'react'
 import { createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { notesService } from '~entities/api'
-import { useDisableEditNote } from '~entities/hooks'
-import { INote } from '~entities/models/note'
+import { notesService } from '~/entities/api'
+import { useDisableEditNote } from '~/entities/hooks'
+import { INote } from '~/entities/models/note'
 import { useAlert } from './Alert'
 import { useAuth } from './Auth'
 
@@ -20,7 +13,7 @@ interface NotesProps {
 	loading: boolean
 	isDisabled: boolean
 	current: INote
-	setCurrent: Dispatch<SetStateAction<INote>>
+	setCurrent: (note: INote) => void
 	handleChangeCurrent: (e: {
 		target: HTMLInputElement | HTMLTextAreaElement
 	}) => void
@@ -41,7 +34,7 @@ const notesDefaultValue: NotesProps = {
 	current: newNote,
 	loading: false,
 	isDisabled: true,
-	setCurrent: () => {},
+	setCurrent: (note: INote) => {},
 	handleChangeCurrent: () => {},
 	saveNote: () => {},
 	editNote: () => {},

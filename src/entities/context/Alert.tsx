@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react'
 import { useContext } from 'react'
 import { createContext } from 'react'
-import { IAlert } from '~entities/models/alert'
+import { IAlert } from '~/entities/models/alert'
 
 const alertDefaultValue = {
 	alerts: [],

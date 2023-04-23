@@ -15,14 +15,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "~processes/*": ["processes/*"],
-      "~pages/*": ["pages/*"],
-      "~widgets/*": ["widgets/*"],
-      "~features/*": ["features/*"],
-      "~entities/*": ["entities/*"],
-      "~shared/*": ["shared/*"],
+      "~/*": ["./src/*"],
   }
 
   },

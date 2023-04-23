@@ -1,8 +1,8 @@
 import { Flex, Navbar, Text } from '@mantine/core'
-import { useLocation } from 'react-router-dom'
-import { INote } from '~entities/models/note'
-import { Title } from '~shared/ui'
-import { getDate } from '~shared/utils/getDate'
+import { useNotes } from '~/entities/context'
+import { INote } from '~/entities/models/note'
+import { Title } from '~/shared/ui'
+import { getDate } from '~/shared/utils/getDate'
 
 interface IProps {
 	note: INote
@@ -10,21 +10,17 @@ interface IProps {
 }
 
 export const NavbarItem = ({ note, onClick }: IProps) => {
-	const location = useLocation()
+	const { current } = useNotes()
 
 	return (
 		<Navbar.Section
-			bg={
-				location.pathname === `/${note.id}`
-					? 'var(--gray-light)'
-					: '#fff'
-			}
+			bg={current.id === `${note.id}` ? 'var(--gray-light)' : '#fff'}
 			p={10}
 			style={{
 				borderBottom: '1px solid var(--gray-dark)',
 				cursor: 'pointer',
 			}}
-			onClick={() => onClick(`/${note.id}`)}>
+			onClick={() => onClick(`${note.id}`)}>
 			<Flex direction='column' gap={5}>
 				<Title order={6} children={note.title} truncate />
 				<Flex gap={5}>

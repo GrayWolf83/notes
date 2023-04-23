@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { AuthPayload } from '~entities/models/auth'
+import { AuthPayload } from '~/entities/models/auth'
 import localStorageService from './localStorage.service'
 
 export const httpAuth = axios.create({

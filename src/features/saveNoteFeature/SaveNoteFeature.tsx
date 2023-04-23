@@ -1,6 +1,6 @@
-import { useNotes } from '~entities/context'
-import { SaveIcon } from '~shared/icons'
-import { Button } from '~shared/ui'
+import { useNotes } from '~/entities/context'
+import { SaveIcon } from '~/shared/icons'
+import { Button } from '~/shared/ui'
 
 const SaveNoteFeature = () => {
 	const { saveNote, isDisabled } = useNotes()

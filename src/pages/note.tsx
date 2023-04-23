@@ -1,29 +1,8 @@
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import { TextInput, Textarea } from '@mantine/core'
-import { useNotes } from '~entities/context'
+import { useNotes } from '~/entities/context'
 
 const Note = () => {
-	const { noteId } = useParams()
-	const {
-		notes,
-		isDisabled,
-		editNote,
-		setCurrent,
-		handleChangeCurrent,
-		current,
-	} = useNotes()
-
-	useEffect(() => {
-		if (noteId) {
-			const currentNote = notes.find((note) => note.id === noteId)
-
-			if (currentNote) {
-				setCurrent(currentNote)
-				editNote(true)
-			}
-		}
-	}, [noteId])
+	const { isDisabled, handleChangeCurrent, current } = useNotes()
 
 	return (
 		<>

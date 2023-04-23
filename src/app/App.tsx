@@ -1,6 +1,6 @@
 import { MantineProvider } from '@mantine/core'
 import { Notifications } from '@mantine/notifications'
-import { Routing } from '~processes/routing'
+import { Routing } from '~/processes/routing'
 import './App.css'
 
 export function App() {

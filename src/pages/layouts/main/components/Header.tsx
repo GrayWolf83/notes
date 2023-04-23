@@ -1,9 +1,9 @@
 import { Header, Flex, Box } from '@mantine/core'
-import { LogoIcon } from '~shared/icons'
-import { Title } from '~shared/ui'
-import { ChangeNoteWidget } from '~widgets/changeNoteWidget'
-import { SearchWidget } from '~widgets/searchWidget'
-import { UserInfoWidget } from '~widgets/userInfoWidget'
+import { LogoIcon } from '~/shared/icons'
+import { Title } from '~/shared/ui'
+import { ChangeNoteWidget } from '~/widgets/changeNoteWidget'
+import { SearchWidget } from '~/widgets/searchWidget'
+import { UserInfoWidget } from '~/widgets/userInfoWidget'
 
 const AppHeader = () => {
 	return (

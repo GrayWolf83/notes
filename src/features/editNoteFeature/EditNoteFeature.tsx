@@ -1,6 +1,6 @@
-import { useNotes } from '~entities/context'
-import { EditIcon } from '~shared/icons'
-import { Button } from '~shared/ui'
+import { useNotes } from '~/entities/context'
+import { EditIcon } from '~/shared/icons'
+import { Button } from '~/shared/ui'
 
 const EditNoteFeature = () => {
 	const { editNote } = useNotes()

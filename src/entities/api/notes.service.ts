@@ -1,4 +1,3 @@
-import { INote } from '~entities/models/note'
 import httpService from './http'
 import localStorageService from './localStorage.service'
 

@@ -1,6 +1,6 @@
 import { notifications } from '@mantine/notifications'
 import { useEffect } from 'react'
-import { useAlert } from '~entities/context'
+import { useAlert } from '~/entities/context'
 
 const AppAlert = () => {
 	const { alerts, clearAlerts } = useAlert()
