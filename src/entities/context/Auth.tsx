@@ -1,9 +1,8 @@
 import { ReactNode, useState } from 'react'
 import { useContext } from 'react'
 import { createContext } from 'react'
-import authService from '~entities/api/auth.service'
-import localStorageService from '~entities/api/localStorage.service'
-import { AuthPayload } from '~entities/models/auth'
+import { authService, localStorageService } from '~/entities/api'
+import { AuthPayload } from '~/entities/models/auth'
 import { useAlert } from './Alert'
 
 interface AuthProps {

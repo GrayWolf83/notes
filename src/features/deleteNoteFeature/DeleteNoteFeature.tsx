@@ -1,8 +1,8 @@
 import { Text, Modal, Group } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import { useNotes } from '~entities/context'
-import { DeleteIcon } from '~shared/icons'
-import { Button, Title } from '~shared/ui'
+import { useNotes } from '~/entities/context'
+import { DeleteIcon } from '~/shared/icons'
+import { Button } from '~/shared/ui'
 
 const DeleteNoteFeature = () => {
 	const { current, removeNote } = useNotes()

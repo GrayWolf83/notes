@@ -1,7 +1,5 @@
 import { Flex } from '@mantine/core'
-import { DeleteNoteFeature } from '~features/deleteNoteFeature'
-import { EditNoteFeature } from '~features/editNoteFeature'
-import { SaveNoteFeature } from '~features/saveNoteFeature'
+import { DeleteNoteFeature, SaveNoteFeature, EditNoteFeature } from '~/features'
 
 const ChangeNoteWidget = () => {
 	return (

@@ -1,16 +1,17 @@
 import { Navbar } from '@mantine/core'
-import { useNavigate } from 'react-router-dom'
-import { useNotes, useSearchContext } from '~entities/context'
-import { Loader } from '~shared/ui'
+import { useNotes, useSearchContext } from '~/entities/context'
+import { Loader } from '~/shared/ui'
 import { NavbarItem } from './NavbarItem'
 
 const AppNavbar = () => {
-	const navigate = useNavigate()
-	const { notes, loading } = useNotes()
+	const { notes, loading, setCurrent } = useNotes()
 	const { throttledSearch } = useSearchContext()
 
-	const handleClick = (path: string) => {
-		navigate(path)
+	const handleClick = (id: string) => {
+		const note = notes.find((item) => item.id === id)
+		if (note) {
+			setCurrent(note)
+		}
 	}
 
 	const searchedNotes = notes

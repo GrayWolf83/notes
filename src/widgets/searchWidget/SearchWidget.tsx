@@ -1,5 +1,5 @@
 import { TextInput } from '@mantine/core'
-import { useSearchContext } from '~entities/context'
+import { useSearchContext } from '~/entities/context'
 
 export const SearchWidget = () => {
 	const { search, onChangeSearch } = useSearchContext()

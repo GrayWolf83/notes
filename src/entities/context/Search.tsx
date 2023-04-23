@@ -1,8 +1,7 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import { useContext } from 'react'
 import { createContext } from 'react'
-import { useSearch } from '~entities/hooks'
-import { IAlert } from '~entities/models/alert'
+import { useSearch } from '~/entities/hooks'
 
 const searchDefaultValue: SearchProps = {
 	search: '',
