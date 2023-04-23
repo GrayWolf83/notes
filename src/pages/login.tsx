@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { SigninWidget } from '~widgets/signinWidget'
-import { SignupWidget } from '~widgets/signupWidget'
+import { SigninWidget } from '~/widgets/signinWidget'
+import { SignupWidget } from '~/widgets/signupWidget'
 
 const Login = () => {
 	const [isLogin, setIsLogin] = useState(true)

@@ -1,26 +1,19 @@
-import {
-	ReactNode,
-	useEffect,
-	useState,
-	useContext,
-	Dispatch,
-	SetStateAction,
-} from 'react'
+import { ReactNode, useEffect, useState, useContext } from 'react'
 import { createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { notesService } from '~entities/api'
-import { useDisableEditNote } from '~entities/hooks'
-import { INote } from '~entities/models/note'
+import { notesService } from '~/entities/api'
+import { useDisableEditNote } from '~/entities/hooks'
+import { INote } from '~/entities/models/note'
 import { useAlert } from './Alert'
 import { useAuth } from './Auth'
 
 interface NotesProps {
-	notes: any[]
+	notes: INote[]
 	loading: boolean
 	isDisabled: boolean
 	current: INote
-	setCurrent: Dispatch<SetStateAction<INote>>
+	setCurrent: (note: INote) => void
 	handleChangeCurrent: (e: {
 		target: HTMLInputElement | HTMLTextAreaElement
 	}) => void
@@ -29,7 +22,7 @@ interface NotesProps {
 	removeNote: () => void
 }
 
-const newNote = {
+const newNote: INote = {
 	id: 'new',
 	title: 'Новая заметка',
 	content: '',
@@ -41,7 +34,7 @@ const notesDefaultValue: NotesProps = {
 	current: newNote,
 	loading: false,
 	isDisabled: true,
-	setCurrent: () => {},
+	setCurrent: (note: INote) => {},
 	handleChangeCurrent: () => {},
 	saveNote: () => {},
 	editNote: () => {},
@@ -81,7 +74,9 @@ export function NotesProvider(props: NotesProviderProps) {
 		try {
 			const data = await notesService.getList()
 
-			setNotes([newNote, ...data])
+			if (data) {
+				setNotes([newNote, ...data])
+			}
 		} catch (error: any) {
 			setAlert({
 				title: error?.code,
@@ -178,8 +173,6 @@ export function NotesProvider(props: NotesProviderProps) {
 	useEffect(() => {
 		if (email) {
 			getNotes()
-		} else {
-			setNotes([newNote])
 		}
 	}, [email])
 

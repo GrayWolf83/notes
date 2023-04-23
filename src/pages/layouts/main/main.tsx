@@ -1,14 +1,8 @@
-import { Navigate, Outlet, useParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { AppShell, Box } from '@mantine/core'
 import { Header, Navbar } from './components'
 
 const MainLayout = () => {
-	const { noteId } = useParams()
-
-	if (!noteId) {
-		return <Navigate to={'/new'} />
-	}
-
 	return (
 		<AppShell padding='md' navbar={<Navbar />} header={<Header />}>
 			<Box

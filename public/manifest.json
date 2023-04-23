@@ -1,0 +1,52 @@
+{
+    "name": "Notes",
+    "short_name": "Notes",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#f3f3f3",
+    "theme_color": "#000",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/bookmark-16x16.svg",
+            "type": "image/svg+xml",
+            "sizes": "16x16"
+        },
+        {
+            "src": "bookmark-32x32.svg",
+            "type": "image/svg+xml",
+            "sizes": "32x32"
+        },
+        {
+            "src": "bookmark-72x72.svg",
+            "type": "image/svg+xml",
+            "sizes": "72x72"
+        },
+        {
+            "src": "bookmark-96x96.svg",
+            "type": "image/svg+xml",
+            "sizes": "96x96"
+        },
+        {
+            "src": "bookmark-144x144.svg",
+            "type": "image/svg+xml",
+            "sizes": "144x144",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "bookmark-192x192.svg",
+            "type": "image/svg+xml",
+            "sizes": "192x192"
+        },
+        {
+            "src": "bookmark-348x348.svg",
+            "type": "image/svg+xml",
+            "sizes": "348x348"
+        },
+        {
+            "src": "/bookmark-512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

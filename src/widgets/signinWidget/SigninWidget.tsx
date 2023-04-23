@@ -1,8 +1,8 @@
 import { TextInput, Button, Group, Box, PasswordInput } from '@mantine/core'
 import { useNavigate } from 'react-router-dom'
-import { FormField } from '~entities/components'
-import { useAuth } from '~entities/context'
-import { Title } from '~shared/ui'
+import { FormField } from '~/entities/components'
+import { useAuth } from '~/entities/context'
+import { Title } from '~/shared/ui'
 
 const initialValues = {
 	email: '',
